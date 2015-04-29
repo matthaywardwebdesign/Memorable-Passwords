@@ -1,13 +1,12 @@
 var lists = [];
 var fs = require("fs");
-
 function loadLists(callback) {
     if (lists.length == 0) {
         //Load the lists
-        fs.readdir("word-lists/", function (err, files) {
+        fs.readdir(__dirname + "/word-lists/", function (err, files) {
             if (err) throw err;
             for (var i = 0; i < files.length; i++) {
-                lists.push(fs.readFileSync("word-lists/" + files[i]).toString().split("\r\n"));
+                lists.push(fs.readFileSync(__dirname + "/word-lists/" + files[i]).toString().split("\n"));
             }
             callback();
         });
